@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
+import heroNotebook from "./assets/hero-notebook.png";
 import notebookBg from "./assets/notebook-bg.png";
 import combustionCard from "./assets/card-combustion.png";
 import fossilCard from "./assets/card-fossil-fuels.png";
@@ -247,37 +248,28 @@ function App() {
       <PathNav />
 
       <section id="cover" className="hero notebook-page">
-        <div className="hero-left">
-          <div className="masking-tape">IB Chemistry</div>
-          <div className="hero-title">
-            <h1>
-              Energy
-              <span>from Fuel</span>
-            </h1>
-            <p>
-              What are the challenges of using chemical energy to address our energy needs?
-            </p>
-          </div>
-          <div className="reaction-scrap">
-            <strong>Combustion Reaction</strong>
-            <span>CH4 + 2O2 -&gt; CO2 + 2H2O</span>
-          </div>
-        </div>
-        <div className="hero-right">
-          <div className="mini-map">
-            <h2>Project Map</h2>
-            <p>Cover -&gt; Map -&gt; Topics -&gt; Summit -&gt; Sources</p>
-          </div>
-          <div className="hero-card-grid">
-            {topics.map((topic) => (
-              <TopicButton topic={topic} key={topic.id} />
-            ))}
-          </div>
-          <div className="chemistry-scrap">
-            Chemistry drives our world.
-            <br />
-            So does the choice we make.
-          </div>
+        <h1 className="sr-only">Energy from Fuel</h1>
+        <p className="sr-only">
+          What are the challenges of using chemical energy to address our energy needs?
+        </p>
+        <img
+          className="hero-photo"
+          src={heroNotebook}
+          alt="Open IB Chemistry notebook titled Energy from Fuel with project map and topic cards"
+        />
+        <div className="hero-hotspots" aria-label="Energy from Fuel topic shortcuts">
+          <a className="hotspot combustion-hotspot" href="#combustion">
+            Combustion
+          </a>
+          <a className="hotspot fossil-hotspot" href="#fossil-fuels">
+            Fossil Fuels
+          </a>
+          <a className="hotspot biofuels-hotspot" href="#biofuels">
+            Biofuels
+          </a>
+          <a className="hotspot fuel-cells-hotspot" href="#fuel-cells">
+            Fuel Cells
+          </a>
         </div>
       </section>
 
