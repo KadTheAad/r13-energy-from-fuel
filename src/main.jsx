@@ -70,8 +70,8 @@ const cards = [
         url: "https://www.eia.gov/energyexplained/us-energy-facts/data-and-statistics.php",
       },
       graphic: {
-        label: "NASA fossil fuel emissions graphic",
-        url: "https://science.nasa.gov/earth/earth-observatory/emissions-from-fossil-fuels-continue-to-rise-152519/",
+        label: "Global carbon emissions graphic",
+        url: "https://commons.wikimedia.org/wiki/File:Global_Carbon_Emissions.svg",
       },
     },
   },
@@ -103,8 +103,8 @@ const cards = [
         url: "https://www.eia.gov/energyexplained/biofuels/",
       },
       graphic: {
-        label: "Biofuels and biomass graphic",
-        url: "https://www.eia.gov/energyexplained/biofuels/",
+        label: "Biofuel production chart",
+        url: "https://ourworldindata.org/grapher/biofuel-production",
       },
     },
   },
@@ -128,16 +128,16 @@ const cards = [
     source: "DOE, AFDC, GAO",
     media: {
       video: {
-        label: "Hydrogen and fuel cells basics",
-        url: "https://www.energy.gov/eere/fuelcells/fuel-cell-animation",
+        label: "Energy 101: Fuel Cell Technology",
+        url: "https://www.energy.gov/cmei/articles/energy-101-fuel-cell-technology",
       },
       reading: {
         label: "Fuel cells explained",
-        url: "https://www.energy.gov/eere/fuelcells/fuel-cells",
+        url: "https://www.energy.gov/cmei/fuels/fuel-cells",
       },
       graphic: {
         label: "Fuel cell parts diagram",
-        url: "https://www.energy.gov/eere/fuelcells/parts-fuel-cell",
+        url: "https://www.energy.gov/cmei/fuels/parts-fuel-cell",
       },
     },
   },
