@@ -1,28 +1,89 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import heroNotebook from "./assets/hero-notebook.png";
+import notebookBg from "./assets/notebook-bg.png";
+import combustionCard from "./assets/card-combustion.png";
+import fossilCard from "./assets/card-fossil-fuels.png";
+import biofuelsCard from "./assets/card-biofuels.png";
+import fuelCellsCard from "./assets/card-fuel-cells.png";
 
 const cards = [
   {
     id: "combustion",
     label: "Combustion",
     className: "combustion-card",
+    image: combustionCard,
+    theme: "fire",
+    tag: "Energy released",
+    paragraphs: [
+      "Combustion is a chemical reaction in which a fuel reacts with oxygen and releases energy, usually as heat and light. In hydrocarbon fuels, complete combustion happens when there is enough oxygen for carbon and hydrogen atoms to fully react.",
+      "Incomplete combustion happens when oxygen is limited. It can produce carbon monoxide or soot instead of only carbon dioxide and water. Carbon monoxide is especially dangerous because it is colorless, poisonous, and interferes with oxygen transport in blood.",
+      "Combustion is useful because it releases energy quickly and reliably, but it can also produce greenhouse gases and air pollutants. Even complete combustion releases carbon dioxide when the fuel contains carbon.",
+    ],
+    questions: [
+      "What two products form during complete combustion of a hydrocarbon?",
+      "Why can incomplete combustion produce carbon monoxide?",
+      "Why is combustion useful but environmentally challenging?",
+    ],
+    source: "Chemistry LibreTexts",
   },
   {
     id: "fossil-fuels",
     label: "Fossil Fuels",
     className: "fossil-card",
+    image: fossilCard,
+    theme: "fossil",
+    tag: "Ancient energy, modern impact",
+    paragraphs: [
+      "Fossil fuels include coal, oil, and natural gas. They formed over millions of years from ancient living matter buried, compressed, and changed by heat and pressure. They are non-renewable because humans use them far faster than they form.",
+      "They remain widely used because they are energy-dense, reliable, and supported by huge infrastructure for electricity, heating, transportation, and industry. That makes replacing them quickly difficult.",
+      "The major challenge is that burning fossil fuels releases carbon dioxide and other pollutants. They provide dependable energy, but their climate and air-quality impacts are why alternatives matter.",
+    ],
+    questions: [
+      "Why are fossil fuels considered non-renewable?",
+      "What makes fossil fuels hard to replace quickly?",
+      "Why should fossil fuel alternatives be used?",
+    ],
+    source: "DOE, EIA, NASA",
   },
   {
     id: "biofuels",
     label: "Biofuels",
     className: "biofuels-card",
+    image: biofuelsCard,
+    theme: "bio",
+    tag: "Renewable possibilities",
+    paragraphs: [
+      "Biofuels are fuels made from biomass, which means recently living material such as crops, plant waste, wood, algae, used cooking oil, or animal fats. Ethanol, biodiesel, and renewable diesel are common transportation biofuels.",
+      "Biofuels can reduce dependence on petroleum because they can replace or blend with gasoline, diesel, and jet fuel. Some can work with existing engines and fuel systems, which makes them practical as transition fuels.",
+      "The challenge is that biofuels are not automatically carbon-free. Their real impact depends on land use, growing methods, processing energy, transportation, and whether they compete with food production.",
+    ],
+    questions: [
+      "What does biomass mean?",
+      "How can biofuels reduce petroleum use?",
+      "Why are biofuels not automatically carbon-neutral?",
+    ],
+    source: "EIA, DOE",
   },
   {
     id: "fuel-cells",
     label: "Fuel Cells",
     className: "fuel-cells-card",
+    image: fuelCellsCard,
+    theme: "cell",
+    tag: "Clean energy, powered by chemistry",
+    paragraphs: [
+      "A fuel cell converts chemical energy directly into electrical energy. In a hydrogen fuel cell, hydrogen enters the anode and oxygen enters the cathode. Electrons travel through an external circuit, creating electric current.",
+      "Fuel cells are different from combustion because the fuel is not burned. With hydrogen, the point-of-use products are electricity, water, and heat, making fuel cells attractive for clean transport and backup power.",
+      "The main challenges are hydrogen production, storage, cost, and infrastructure. Hydrogen must be produced cleanly, and it is difficult to store because it has low energy content by volume.",
+    ],
+    questions: [
+      "How does a fuel cell create electric current?",
+      "Why are hydrogen fuel cells clean at the point of use?",
+      "What are two barriers to widespread fuel cell use?",
+    ],
+    source: "DOE, AFDC, GAO",
   },
 ];
 
@@ -213,8 +274,21 @@ function CalibrationApp() {
 }
 
 function App() {
+  const [hash, setHash] = useState(window.location.hash);
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, []);
+
   if (window.location.search.includes("calibrate")) {
     return <CalibrationApp />;
+  }
+
+  const activeTopic = cards.find((card) => hash === `#${card.id}`);
+  if (activeTopic) {
+    return <InfoPage topic={activeTopic} />;
   }
 
   return (
@@ -235,6 +309,37 @@ function App() {
           />
         ))}
       </div>
+    </main>
+  );
+}
+
+function InfoPage({ topic }) {
+  return (
+    <main className={`info-page ${topic.theme}`} style={{ "--notebook-bg": `url(${notebookBg})` }}>
+      <a className="back-home" href="./">
+        Back to notebook
+      </a>
+      <section className="info-spread">
+        <div className="info-card">
+          <img src={topic.image} alt={`${topic.label} visual notebook card`} />
+        </div>
+        <article className="info-copy">
+          <p className="topic-tag">{topic.tag}</p>
+          <h1>{topic.label}</h1>
+          {topic.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          <p className="source-note">Source trail: {topic.source}</p>
+        </article>
+        <aside className="question-note">
+          <h2>Check Questions</h2>
+          <ol>
+            {topic.questions.map((question) => (
+              <li key={question}>{question}</li>
+            ))}
+          </ol>
+        </aside>
+      </section>
     </main>
   );
 }
