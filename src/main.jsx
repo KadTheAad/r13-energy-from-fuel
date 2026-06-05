@@ -136,8 +136,8 @@ const cards = [
         url: "https://www.energy.gov/cmei/fuels/fuel-cells",
       },
       graphic: {
-        label: "Fuel cell parts diagram",
-        url: "https://www.energy.gov/cmei/fuels/parts-fuel-cell",
+        label: "PEM fuel cell diagram",
+        url: "https://commons.wikimedia.org/wiki/File:PEM_fuel_cell.svg",
       },
     },
   },
