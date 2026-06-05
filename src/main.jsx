@@ -27,6 +27,20 @@ const cards = [
       "Why is combustion useful but environmentally challenging?",
     ],
     source: "Chemistry LibreTexts",
+    media: {
+      video: {
+        label: "Complete and Incomplete Combustion",
+        url: "https://www.youtube.com/watch?v=cRnpKjHpFyg",
+      },
+      reading: {
+        label: "Combustion overview",
+        url: "https://www.britannica.com/science/combustion",
+      },
+      graphic: {
+        label: "Fire triangle graphic",
+        url: "https://commons.wikimedia.org/wiki/File:Fire_triangle.svg",
+      },
+    },
   },
   {
     id: "fossil-fuels",
@@ -46,6 +60,20 @@ const cards = [
       "Why should fossil fuel alternatives be used?",
     ],
     source: "DOE, EIA, NASA",
+    media: {
+      video: {
+        label: "NASA fossil fuel CO2 visualization",
+        url: "https://www.youtube.com/watch?v=1rZDJrVcie4",
+      },
+      reading: {
+        label: "U.S. energy facts",
+        url: "https://www.eia.gov/energyexplained/us-energy-facts/data-and-statistics.php",
+      },
+      graphic: {
+        label: "NASA fossil fuel emissions graphic",
+        url: "https://science.nasa.gov/earth/earth-observatory/emissions-from-fossil-fuels-continue-to-rise-152519/",
+      },
+    },
   },
   {
     id: "biofuels",
@@ -65,6 +93,20 @@ const cards = [
       "Why are biofuels not automatically carbon-neutral?",
     ],
     source: "EIA, DOE",
+    media: {
+      video: {
+        label: "Energy 101: Biofuels",
+        url: "https://www.energy.gov/energysaver/articles/energy-101-video-biofuels",
+      },
+      reading: {
+        label: "Biofuels explained",
+        url: "https://www.eia.gov/energyexplained/biofuels/",
+      },
+      graphic: {
+        label: "Biofuels and biomass graphic",
+        url: "https://www.eia.gov/energyexplained/biofuels/",
+      },
+    },
   },
   {
     id: "fuel-cells",
@@ -84,6 +126,20 @@ const cards = [
       "What are two barriers to widespread fuel cell use?",
     ],
     source: "DOE, AFDC, GAO",
+    media: {
+      video: {
+        label: "Hydrogen and fuel cells basics",
+        url: "https://www.energy.gov/eere/fuelcells/fuel-cell-animation",
+      },
+      reading: {
+        label: "Fuel cells explained",
+        url: "https://www.energy.gov/eere/fuelcells/fuel-cells",
+      },
+      graphic: {
+        label: "Fuel cell parts diagram",
+        url: "https://www.energy.gov/eere/fuelcells/parts-fuel-cell",
+      },
+    },
   },
 ];
 
@@ -338,6 +394,21 @@ function InfoPage({ topic }) {
               <li key={question}>{question}</li>
             ))}
           </ol>
+        </aside>
+        <aside className="media-note">
+          <h2>Explore More</h2>
+          <a href={topic.media.video.url} target="_blank" rel="noreferrer">
+            <span>Video</span>
+            {topic.media.video.label}
+          </a>
+          <a href={topic.media.reading.url} target="_blank" rel="noreferrer">
+            <span>Reading</span>
+            {topic.media.reading.label}
+          </a>
+          <a href={topic.media.graphic.url} target="_blank" rel="noreferrer">
+            <span>Graphic</span>
+            {topic.media.graphic.label}
+          </a>
         </aside>
       </section>
     </main>
